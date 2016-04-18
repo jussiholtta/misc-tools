@@ -1,0 +1,72 @@
+<html>
+<head>
+</head>
+<body>
+Step length <input id="step" onchange="updateStep()" type="range" step="2" min="2" max="10" value="6"/>
+<div id="steptext">4</div>
+Round length <input id="round" onchange="updateRound()" type="range" step="30" min="30" max="360" value="120"/>
+<div id="roundtext">120</div>
+
+<input onclick="playRound()" type="button" value="Play Round" />
+<input onclick="stopButton()" type="button" value="Stop All Audio" />
+
+<!-- CC BY 3.0 Recorded by Mike Koenig - http://soundbible.com/ -->
+<audio id="heartbeat" style="display: none; width: 0px; height: 0px;" src="HeartBeat-SoundBible.com-1259675634.mp3" controls preload="auto" autobuffer/>
+<audio id="beep" style="display: none; width: 0px; height: 0px;" src="Beep-SoundBible.com-923660219.mp3" controls preload="auto" autobuffer/>
+<audio id="chimp" style="display: none; width: 0px; height: 0px;" src="Chimpanzee-SoundBible.com-901310467.mp3" controls preload="auto" autobuffer/>
+</body>
+<script>
+var heartbeat = document.getElementById("heartbeat");
+var beep = document.getElementById("beep");
+var chimp = document.getElementById("chimp");
+var stepValue = document.getElementById("step").value;
+var roundValue = document.getElementById("round").value;
+
+var interval = {};
+var odd = true;
+var stopped = true;
+
+function updateStep() {
+  stepValue = document.getElementById("step").value;
+  document.getElementById("steptext").innerHTML = stepValue;
+}
+
+function updateRound() {
+  roundValue = document.getElementById("round").value;
+  document.getElementById("roundtext").innerHTML = roundValue;
+}
+
+function playSounds() {
+  if(odd) {
+    heartbeat.play();
+  } else {
+    beep.play();
+  }
+  odd = !odd;
+}
+
+function playRound() {
+  var stepLength = stepValue*1000;
+  var roundLength = (roundValue+stepValue/2)*1000;
+  stopped = false;
+
+  setTimeout(function(){
+      interval = setInterval(playSounds,stepLength);
+      setTimeout(function(){
+          if(stopped)
+            return;
+          stopButton();
+          chimp.play();
+          }, roundLength);
+  }, 1);
+};
+
+
+function stopButton() {
+  clearInterval(interval);
+  var sounds = document.getElementsByTagName('audio');
+  for(i=0; i<sounds.length; i++) sounds[i].pause();
+}
+;
+</script>
+</html>
