@@ -2,10 +2,10 @@
 <head>
 </head>
 <body>
-Step length <input id="step" onchange="updateStep()" type="range" step="2" min="2" max="10" value="6"/>
-<div id="steptext">4</div>
-Round length <input id="round" onchange="updateRound()" type="range" step="30" min="30" max="360" value="120"/>
-<div id="roundtext">120</div>
+Step length <input id="step" onchange="updateStep()" type="range" step="2" min="2" max="10"/>
+<div id="steptext"></div>
+Round length <input id="round" onchange="updateRound()" type="range" step="30" min="30" max="360"/>
+<div id="roundtext"></div>
 
 <input onclick="playRound()" type="button" value="Play Round" />
 <input onclick="stopButton()" type="button" value="Stop All Audio" />
@@ -28,12 +28,12 @@ var stopped = true;
 
 function updateStep() {
   stepValue = document.getElementById("step").value;
-  document.getElementById("steptext").innerHTML = stepValue;
+  document.getElementById("steptext").innerHTML = stepValue + " seconds";
 }
 
 function updateRound() {
   roundValue = document.getElementById("round").value;
-  document.getElementById("roundtext").innerHTML = roundValue;
+  document.getElementById("roundtext").innerHTML = roundValue/60 + " minutes";
 }
 
 function playSounds() {
@@ -46,8 +46,8 @@ function playSounds() {
 }
 
 function playRound() {
-  var stepLength = stepValue*1000;
-  var roundLength = (roundValue+stepValue/2)*1000;
+  var stepLength = stepValue*500; //beep every other tick
+  var roundLength = roundValue*1000 + stepLength;
   stopped = false;
 
   setTimeout(function(){
@@ -66,7 +66,9 @@ function stopButton() {
   clearInterval(interval);
   var sounds = document.getElementsByTagName('audio');
   for(i=0; i<sounds.length; i++) sounds[i].pause();
-}
-;
+};
+
+updateRound();
+updateStep();
 </script>
 </html>
