@@ -18,11 +18,22 @@ describe('neuron.js', function() {
       expect(neuron.dendrites).to.not.be.undefined;
     });
     
-    it('should default to 4 dendrites', function() {
+    it('should be able to create dendrites', function() {
       var neuron = NeuronBuilder.Neuron();
-      expect(neuron.dendrites.length).to.eql(4);
+      var dendrite = neuron.newDendrite();
+      expect(dendrite).to.not.be.undefined;
     });
     
+    it('should default to 6 dendrites', function() {
+      var neuron = NeuronBuilder.Neuron();
+      expect(neuron.dendrites.length).to.eql(6);
+    });
+    
+    it('should be able to create axons', function() {
+      var neuron = NeuronBuilder.Neuron();
+      var axon = neuron.newAxon();
+      expect(axon).to.not.be.undefined;
+    });
     
     it('should default to 2 axons', function() {
       var neuron = NeuronBuilder.Neuron();
