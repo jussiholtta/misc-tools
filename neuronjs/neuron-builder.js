@@ -15,9 +15,8 @@ AxonFactory = {
     this.buildSynapse = function(dendrite) {
       this.pair = dendrite;
       dendrite.pair = this;
-      return this;
+      //return this;
     };
-    
     this.parent = neuron;
     return this;
   }
@@ -28,15 +27,39 @@ NeuronBuilder = {
 
     this.newDendrite = function() {
       return new DendriteFactory.Dendrite();
-    }
+    };
+    
     this.newAxonTerminal = function() {
       return new AxonFactory.Axon();
     };
     
+    this.findFreeAxonTerminal = function() {
+      for(i = 0; i < this.axonTerminals.length; i++) {
+        var axon = this.axonTerminals[i];
+        if(axon.pair === undefined)
+          return axon;
+        
+      }
+      return -1;
+    };
+    
+    this.findFreeDendrite = function() {
+      for(i = 0; i < this.dendrites.length; i++) {
+        var dendrite = this.dendrites[i];
+        if(dendrite.pair === undefined)
+          return dendrite;
+      }
+      return -1;
+    };
+    
     this.connect = function(n2) {
-      var axon = this.axonTerminals[0]
-      return axon.buildSynapse(n2.dendrites[0]);
-    }
+      var axon = this.findFreeAxonTerminal();
+      var dendrite = n2.findFreeDendrite();
+      if (axon != -1 && dendrite != -1)
+        return axon.buildSynapse(dendrite);
+      else
+        return -1;
+    };
     
     this.soma = true;
     this.dendrites = [];
