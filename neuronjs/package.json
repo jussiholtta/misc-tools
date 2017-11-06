@@ -1,0 +1,25 @@
+{
+  "name": "neuronjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/neuron-renderer.coffee",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "coffeescript": "^2.0.2",
+    "mocha": "^4.0.1",
+    "seen-js": "^0.2.7"
+  },
+  "scripts": {
+    "test": "mocha --colors --require coffee-script --require coffee-script/register test/**/* src/**/*",
+    "watch": "mocha --colors --require coffee-script --require coffee-script/register test/**/* src/**/* --watch --watch-extensions coffee,js",
+    "build-run": "coffee --compile --transpile --inline-map --output lib/ src/*.coffee; cp src/*js lib/; browserify lib/view.js -o out/neuron.js; cp html/* out/; http-server out/"
+  },
+  "author": "Jussi Holtta",
+  "license": "MIT"
+}
