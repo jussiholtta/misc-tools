@@ -18,12 +18,30 @@ class NeuronRenderer
     for d in neuron.dendrites
       i++
       shapetmp = new seen.Shape('dendrite'+i, [new seen.Surface([
-        seen.P(-1,-1,0)
-        seen.P(1,-1,0)
-        seen.P(1,1,0)
-        seen.P(-1,1,0)
+        seen.P(0,2.5,0)
+        seen.P(-1.5,0.5,0)
+        seen.P(1.5,0.5,0)
       ])])
       shapetmp.rotz(i)
+      shapes.push(shapetmp)
+
+    axon = new seen.Shape('axon', [new seen.Surface([
+        seen.P(0.2,0.2,0)
+        seen.P(-0.2,-0.2,0)
+        seen.P(neuron.axonLength-0.2,-0.2,0)
+        seen.P(neuron.axonLength+0.2,0.2,0)
+      ])])
+    shapes.push(axon)
+
+    i=0
+    for a in neuron.axonTerminals
+      i++
+      shapetmp = new seen.Shape('axonTerminal'+i, [new seen.Surface([
+        seen.P(0,2,0)
+        seen.P(-1,0.5,0)
+        seen.P(1,0.5,0)
+      ])])
+      shapetmp.rotz(i).translate(neuron.axonLength,0)
       shapes.push(shapetmp)
 
     for shape in shapes
