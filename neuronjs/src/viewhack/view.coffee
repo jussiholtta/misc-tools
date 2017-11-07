@@ -29,6 +29,7 @@ class myView
   scene = new seen.Scene
     model    : seen.Models.default().add(shape)
     viewport : seen.Viewports.center(width, height)
+    shader   : seen.Shaders.flat()
 
   # scene.model.add(shape2)
   # Create render context from canvas

@@ -6,12 +6,13 @@ class NeuronRenderer
   
   renderNeuron: (@neuron) ->
     shape = new seen.Shape('neuron', [new seen.Surface([
-      seen.P(0,0,0)
       seen.P(0,1,0)
-      seen.P(1,0,0)
+      seen.P(1,0,1)
+      seen.P(2,0,2)
+      seen.P(-1,0,-1)
+      seen.P(-2,-1,-2)
     ])])
-    shape = seen.Shapes.tetrahedron().scale(200);
-    shape.type = 'neuron';
+    shape.scale(100);
     return shape;
   
 module.exports = NeuronRenderer;
