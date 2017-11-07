@@ -10,5 +10,5 @@ describe 'neuron-renderer.coffee', ->
       expect(renderer).not.to.eql(null)
     it 'should return a shape', ->
       neuron = new NeuronBuilder.Neuron()
-      expect(renderer.renderNeuron(neuron).type).to.eql('neuron')
-      expect(renderer.renderNeuron(neuron).surfaces[0]).to.not.eql(undefined)
+      expect(renderer.renderNeuron(neuron)[0].type).to.eql('soma')
+      expect(renderer.renderNeuron(neuron)[0].surfaces[0]).to.not.eql(undefined)
