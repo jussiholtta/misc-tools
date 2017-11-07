@@ -20,9 +20,9 @@
     "seen-js": "^0.2.7"
   },
   "scripts": {
-    "test": "mocha --colors --require coffee-script --require coffee-script/register test/**/* src/**/*",
-    "watch": "mocha --colors --require coffee-script --require coffee-script/register test/**/* src/**/* --watch --watch-extensions coffee,js",
-    "build": "coffee --compile --transpile --inline-map --output lib/ src/*.coffee; cp src/*js lib/; browserify lib/view.js -o out/neuron.js; cp html/* out/",
+    "test": "mocha --colors --require coffee-script --require coffee-script/register src/**/*",
+    "watch": "mocha --colors --require coffee-script --require coffee-script/register src/**/* --watch --watch-extensions coffee,js",
+    "build": "coffee --compile --transpile --inline-map --output lib/ src/*.coffee; cp src/*js lib/; browserify lib/view.js -o out/neuron.js; cp src/html/* out/",
     "http": "http/server out/"
   },
   "author": "Jussi Holtta",
