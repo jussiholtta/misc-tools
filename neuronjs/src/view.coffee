@@ -1,20 +1,29 @@
 seen = require('seen-js')
-{ NeuronBuilder } = require('./neuron-builder');
-{ NeuronRenderer } = require('./neuron-renderer');
+NeuronBuilder = require('./neuron-builder')
+NeuronRenderer = require('./neuron-renderer')
+canvas = require('canvas')
 
 class myView
+  #for testing, REMOVE THIS
+  #jsd = require('jsdom-global')();
+  #document.body.innerHTML = '<canvas id=\"seen-canvas\"></canvas>'
+  #for testing, REMOVE THIS
+  
   width  = 900
   height = 500
 
   # Create sphere shape with randomly colored surfaces
-  shape = seen.Shapes.sphere(2).scale(height * 0.4)
-  seen.Colors.randomSurfaces2(shape)
+  # shape = seen.Shapes.sphere(2).scale(height * 0.4)
+  # seen.Colors.randomSurfaces2(shape)
   # shape2 = seen.Shapes.tetrahedron().scale(100)
   
   # this be borken
-  #alert(NeuronBuilder)
-  #neuron = new NeuronBuilder.Neuron()
-  #shape = NeuronRenderer.renderNeuron(neuron)
+  # alert(NeuronBuilder)
+  neuron = new NeuronBuilder.Neuron()
+  renderer = new NeuronRenderer();
+  shape = renderer.renderNeuron(neuron)
+  
+  console.log(shape)
   
   # Create scene and add shape to model
   scene = new seen.Scene
