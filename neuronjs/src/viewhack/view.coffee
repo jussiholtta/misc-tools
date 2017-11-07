@@ -1,7 +1,7 @@
 seen = require('seen-js')
 NeuronBuilder = require('./neuron-builder')
 NeuronRenderer = require('./neuron-renderer')
-canvas = require('canvas')
+#canvas = require('canvas')
 
 class myView
   #for testing, REMOVE THIS

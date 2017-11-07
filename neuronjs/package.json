@@ -21,9 +21,9 @@
     "seen-js": "^0.2.7"
   },
   "scripts": {
-    "test": "mocha --colors --require coffee-script --require coffee-script/register src/* src/test/*",
-    "watch": "screen -dmS http-server http-server out/;screen -dmS gulp gulp sync watch;screen -S mocha mocha --colors --require coffee-script --require coffee-script/register src/* src/test/* --watch --watch-extensions coffee,js",
-    "build": "coffee --compile --transpile --inline-map --output lib/ src/*.coffee; cp src/*js lib/; browserify lib/view.js -o out/neuron.js; cp src/html/* out/"
+    "test": "mocha --colors --require coffee-script --require coffee-script/register src/* src/test/* --watch --watch-extensions coffee,js",
+    "dev-screens": "screen -dmS http-server http-server out/;screen -dmS gulp gulp sync watch",
+    "build": "coffee --compile --transpile --inline-map --output lib/ src/*.coffee src/viewhack/*.coffee; cp src/*js lib/; browserify lib/view.js -o out/neuron.js; cp src/html/* out/"
   },
   "author": "Jussi Holtta",
   "license": "MIT"
