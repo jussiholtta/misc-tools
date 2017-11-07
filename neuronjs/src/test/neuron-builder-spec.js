@@ -1,7 +1,7 @@
 // neuron-spec.js
 'use strict';
 var expect = require('chai').expect;
-var NeuronBuilder = require('../src/neuron-builder.js');
+var NeuronBuilder = require('../neuron-builder.js');
 
 describe('neuron-builder.js', function() {
     it('should exist', function() {

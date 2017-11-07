@@ -14,16 +14,16 @@
     "chai": "^4.1.2",
     "coffeescript": "^2.0.2",
     "gulp": "^3.9.1",
+    "gulp-newer": "^1.3.0",
     "jsdom": "11.3.0",
     "jsdom-global": "3.0.2",
     "mocha": "^4.0.1",
     "seen-js": "^0.2.7"
   },
   "scripts": {
-    "test": "mocha --colors --require coffee-script --require coffee-script/register src/**/*",
-    "watch": "mocha --colors --require coffee-script --require coffee-script/register src/**/* --watch --watch-extensions coffee,js",
-    "build": "coffee --compile --transpile --inline-map --output lib/ src/*.coffee; cp src/*js lib/; browserify lib/view.js -o out/neuron.js; cp src/html/* out/",
-    "http": "http/server out/"
+    "test": "mocha --colors --require coffee-script --require coffee-script/register src/* src/test/*",
+    "watch": "screen -dmS http-server http-server out/;screen -dmS gulp gulp sync watch;screen -S mocha mocha --colors --require coffee-script --require coffee-script/register src/* src/test/* --watch --watch-extensions coffee,js",
+    "build": "coffee --compile --transpile --inline-map --output lib/ src/*.coffee; cp src/*js lib/; browserify lib/view.js -o out/neuron.js; cp src/html/* out/"
   },
   "author": "Jussi Holtta",
   "license": "MIT"

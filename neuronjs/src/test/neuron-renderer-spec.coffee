@@ -1,7 +1,7 @@
 'use strict';
 expect = require('chai').expect;
-NeuronRenderer = require('../src/neuron-renderer.coffee');
-NeuronBuilder = require('../src/neuron-builder.js');
+NeuronRenderer = require('../neuron-renderer.coffee');
+NeuronBuilder = require('../neuron-builder.js');
 seen = require('seen-js');
 
 describe 'neuron-renderer.coffee', ->
